@@ -1,0 +1,102 @@
+[
+  {
+    "service": "Laptop Cleaning",
+    "time": "1.5 hours",
+    "cost": 180
+  },
+  {
+    "service": "Network Troubleshooting",
+    "time": "2 hours",
+    "cost": 240
+  },
+  {
+    "service": "Data Transfer",
+    "time": "1.5 hours",
+    "cost": 180
+  },
+  {
+    "service": "OS Update",
+    "time": "1 hour",
+    "cost": 120
+  },
+  {
+    "service": "Macbook Pro Repair",
+    "time": "2 hours",
+    "cost": 240
+  },
+  {
+    "service": "Web Design",
+    "time": "10 hours",
+    "cost": 1200
+  },
+  {
+    "service": "PC Diagnostic",
+    "time": "0.5 hours",
+    "cost": 60
+  },
+  {
+    "service": "Email Setup",
+    "time": "0.5 hours",
+    "cost": 60
+  },
+  {
+    "service": "Cybersecurity Consultation",
+    "time": "2 hours",
+    "cost": 240
+  },
+  {
+    "service": "Network Server Setup",
+    "time": "3 hours",
+    "cost": 360
+  },
+  {
+    "service": "Cloud Backup Setup",
+    "time": "1 hour",
+    "cost": 120
+  },
+  {
+    "service": "VPN Installation",
+    "time": "1 hour",
+    "cost": 120
+  },
+  {
+    "service": "Website Troubleshooting",
+    "time": "2 hours",
+    "cost": 240
+  },
+  {
+    "service": "Diagnostic and Consultation",
+    "time": "1 hour",
+    "cost": 120
+  },
+  {
+    "service": "Security Setup",
+    "time": "3 hours",
+    "cost": 360
+  },
+  {
+    "service": "Password Reset",
+    "time": "1 hour",
+    "cost": 120
+  },
+  {
+    "service": "IT Consulting",
+    "time": "1 hour",
+    "cost": 120
+  },
+  {
+    "service": "BIOS Update",
+    "time": "1 hour",
+    "cost": 120
+  },
+  {
+    "service": "System Training",
+    "time": "2 hours",
+    "cost": 240
+  },
+  {
+    "service": "Printer Troubleshooting",
+    "time": "1.5 hours",
+    "cost": 180
+  }
+]
