@@ -1,30 +1,26 @@
+// File: src/App.jsx
+
 import React, { useState } from 'react';
 import ItemForm from './components/ItemForm'; // Import the ItemForm component
 import ServiceSearch from './components/ServiceSearch'; // Import the ServiceSearch component
+import { calculateWeightedSum } from './utils/calculations'; // Corrected import path for utility functions
 
 function App() {
   const [calculationDetails, setCalculationDetails] = useState([]);
   const [totalSum, setTotalSum] = useState(0);
 
-  // Function to calculate weighted sum based on the pricing and markup rules
-  const calculateWeightedSum = (pairsArray) => {
-    let newTotalSum = 0;
-    let details = pairsArray.map(({ number, quantity }) => {
-      let markedUpNumber = number < 50 ? number * 2 : number * 1.3;
-      const total = markedUpNumber * quantity;
-      newTotalSum += total;
-      return `${number !== markedUpNumber ? `${number} marked up to ${markedUpNumber.toFixed(2)}` : number} (quantity: ${quantity}) = ${total.toFixed(2)}`;
-    });
-
-    setCalculationDetails(details);
-    setTotalSum(`$${newTotalSum.toFixed(2)}`);
+  // Function to handle calculation upon form submission
+  const handleCalculateWeightedSum = (pairsArray) => {
+    const result = calculateWeightedSum(pairsArray); // Using the calculateWeightedSum from utils
+    setCalculationDetails(result.details);
+    setTotalSum(result.totalSum);
   };
 
   return (
     <div className="App">
       <div className="card">
         <h1 className="text-3xl font-semibold mb-6">Number & Quantity Sum Calculator</h1>
-        <ItemForm onCalculateWeightedSum={calculateWeightedSum} />
+        <ItemForm onCalculateWeightedSum={handleCalculateWeightedSum} />
         <ServiceSearch />
       </div>
       <div className="calculation-details mt-8">
