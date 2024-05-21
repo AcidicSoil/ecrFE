@@ -1,39 +1,39 @@
-// File: src/App.jsx
+import React, { useEffect } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import ServiceList from './components/ServiceList';
+import ItemForm from './components/ItemForm';
+import UploadPDF from './components/UploadPDF';
+import Navigation from './components/Navigation';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import socketIOClient from 'socket.io-client';
 
-import React, { useState } from 'react';
-import ItemForm from './components/ItemForm'; // Import the ItemForm component
-import ServiceSearch from './components/ServiceSearch'; // Import the ServiceSearch component
-import { calculateWeightedSum } from './utils/calculations'; // Corrected import path for utility functions
+const ENDPOINT = "http://localhost:5000";
 
-function App() {
-  const [calculationDetails, setCalculationDetails] = useState([]);
-  const [totalSum, setTotalSum] = useState(0);
+const App = () => {
+  useEffect(() => {
+    const socket = socketIOClient(ENDPOINT);
+    socket.on("FromAPI", data => {
+      toast.info("Real-time update: " + data);
+    });
 
-  // Function to handle calculation upon form submission
-  const handleCalculateWeightedSum = (pairsArray) => {
-    const result = calculateWeightedSum(pairsArray); // Using the calculateWeightedSum from utils
-    setCalculationDetails(result.details);
-    setTotalSum(result.totalSum);
-  };
+    return () => socket.disconnect();
+  }, []);
 
   return (
-    <div className="App">
-      <div className="card">
-        <h1 className="text-3xl font-semibold mb-6">Number & Quantity Sum Calculator</h1>
-        <ItemForm onCalculateWeightedSum={handleCalculateWeightedSum} />
-        <ServiceSearch />
+    <Router>
+      <div>
+        <h1>AyaNova Clone</h1>
+        <Navigation />
+        <ToastContainer />
+        <Routes>
+          <Route path="/add-service" element={<ItemForm />} />
+          <Route path="/upload-pdf" element={<UploadPDF />} />
+          <Route path="/" element={<ServiceList />} />
+        </Routes>
       </div>
-      <div className="calculation-details mt-8">
-        <h2 className="text-2xl font-semibold mb-4">Calculation Details:</h2>
-        <p className="text-xl text-green-500 mb-4">Total Weighted Sum: {totalSum}</p>
-        <div className="details-list">
-          {calculationDetails.map((detail, index) => (
-            <p key={index} className="text-gray-800 mb-2">{detail}</p>
-          ))}
-        </div>
-      </div>
-    </div>
+    </Router>
   );
-}
+};
 
 export default App;

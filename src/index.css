@@ -1,14 +1,3 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-/* Custom global styles */
-body {
-  @apply bg-gray-100 text-gray-900; /* Soft background and default text color */
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  @apply font-mono text-sm; /* Apply a monospace font and small text size */
-}
