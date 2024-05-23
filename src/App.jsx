@@ -8,7 +8,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import socketIOClient from 'socket.io-client';
 
-const ENDPOINT = "http://localhost:5000";
+const ENDPOINT = "http://localhost:3001";
 
 const App = () => {
   useEffect(() => {
