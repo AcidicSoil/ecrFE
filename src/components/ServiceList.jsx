@@ -1,14 +1,28 @@
+// /src/components/ServiceList.jsx
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import socketIOClient from 'socket.io-client';
+
+const ENDPOINT = "http://localhost:3001";
 
 const ServiceList = () => {
   const [services, setServices] = useState([]);
   const [search, setSearch] = useState('');
 
   useEffect(() => {
-    axios.get('http://localhost:5000/services')
+    // Fetch initial data using Axios
+    axios.get(`${ENDPOINT}/api/services`)
       .then(response => setServices(response.data))
       .catch(error => console.error('Error fetching services:', error));
+
+    // Set up Socket.io connection for real-time updates
+    const socket = socketIOClient(ENDPOINT);
+    socket.on('FromAPI', data => {
+      // Handle real-time update, e.g., update state with new data
+      setServices(prevServices => [...prevServices, data]);
+    });
+
+    return () => socket.disconnect();
   }, []);
 
   const filteredServices = services.filter(service =>
